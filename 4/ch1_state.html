@@ -16,22 +16,9 @@
     <script type="text/babel">
 
     let CounterComponent = React.createClass({
-      addOne: function() {
-        let plusOne = this.state.count + 1;
+      addCount: function(value) {
         this.setState({
-          count: plusOne,
-        })
-      },
-      addFive: function() {
-        let plusFive = this.state.count + 5;
-        this.setState({
-          count: plusFive,
-        })
-      },
-      addTen: function() {
-        let plusTen = this.state.count + 10;
-        this.setState({
-          count: plusTen,
+          count: this.state.count + value
         })
       },
       getInitialState: function() {
@@ -43,9 +30,9 @@
         return (
           <div className="container">
             <h1>Count: {this.state.count} </h1>
-            <button onClick={this.addOne} className="btn blue-btn">Add 1</button>
-            <button onClick={this.addFive} className="btn blue-btn">Add 5</button>
-            <button onClick={this.addTen} className="btn blue-btn">Add 10</button>
+            <button onClick={this.addCount.bind(this,1)} className="btn blue-btn">Add 1</button>
+            <button onClick={this.addCount.bind(this,5)} className="btn blue-btn">Add 5</button>
+            <button onClick={this.addCount.bind(this,10)} className="btn blue-btn">Add 10</button>
           </div>
         )
       }
