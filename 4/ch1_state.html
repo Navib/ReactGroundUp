@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <!-- React -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
+    <!-- React DOM -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
+    <!-- Babel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.20/browser.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+
+    let CounterComponent = React.createClass({
+      addOne: function() {
+        let plusOne = this.state.count + 1;
+        this.setState({
+          count: plusOne,
+        })
+      },
+      addFive: function() {
+        let plusFive = this.state.count + 5;
+        this.setState({
+          count: plusFive,
+        })
+      },
+      addTen: function() {
+        let plusTen = this.state.count + 10;
+        this.setState({
+          count: plusTen,
+        })
+      },
+      getInitialState: function() {
+        return {
+          count: 0,
+        }
+      },
+      render: function() {
+        return (
+          <div className="container">
+            <h1>Count: {this.state.count} </h1>
+            <button onClick={this.addOne} className="btn blue-btn">Add 1</button>
+            <button onClick={this.addFive} className="btn blue-btn">Add 5</button>
+            <button onClick={this.addTen} className="btn blue-btn">Add 10</button>
+          </div>
+        )
+      }
+    });
+    ReactDOM.render(
+      <CounterComponent />,
+      document.getElementById('app')
+    );
+    </script>
+  </body>
+</html>
