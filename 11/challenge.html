@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <!-- React -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
+    <!-- React DOM -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
+    <!-- Babel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.20/browser.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      class Counter extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {count:0}
+        }
+        click(value , props) {
+          console.log(value);
+          this.setState({
+            count: this.state.count + value
+          })
+        }
+        render() {
+          return (
+            <div className="container">
+              <h1>Count: {this.state.count}</h1>
+              <Button className="btn blue-btn" clickHandler={() => this.click(this.props.value1)} text={`${this.props.text} ${this.props.value1}`} />
+              <Button className="btn green-btn" clickHandler={() => this.click(this.props.value2)} text={`${this.props.text} ${this.props.value2}`} />
+              <Button className="btn purple-btn" clickHandler={() => this.click(this.props.value3)} text={`${this.props.text} ${this.props.value3}`} />
+            </div>
+          )
+        }
+      }
+      const Button = (props) => {
+        return (
+          <button className={props.className} onClick={props.clickHandler} value={props.value}> {props.text}</button>
+        )
+      }
+      Counter.defaultProps = {value1:100,value2:200,value3:500,text:'Add'}
+
+      ReactDOM.render(
+        <Counter />,
+        document.getElementById('app')
+      )
+    </script>
+  </body>
+</html>

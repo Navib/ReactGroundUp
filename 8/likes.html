@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <!-- React -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
+    <!-- React DOM -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
+    <!-- Babel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.20/browser.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      var LikesComponent =  React.createClass({
+        updateLikes: function() {
+          ReactDOM.render(
+            <LikesComponent likes={this.props.likes+1} />,
+            document.getElementById('app')
+          )
+        },
+        getDefaultProps: function() {
+          return({
+            likes: 0
+          })
+        },
+        getInitialState: function() {
+          return({
+            popular: false
+          })
+        },
+        componentWillReceiveProps: function(nextProps) {
+          console.log(nextProps);
+          this.setState({
+            popular: nextProps.likes >= 10
+          })
+        },
+        shouldComponentUpdate: function(nextProps, nextState) {
+          console.log('Next Props: ', nextProps);
+          console.log('Next State: ', nextState);
+          return nextProps.likes % 2 === 0
+        },
+        render: function() {
+          return (
+            <div className="container">
+              <h1>{this.state.popular ? "I'm popular" : null}</h1>
+              <button className="btn blue-btn" onClick={this.updateLikes}>Likes: {this.props.likes}</button>
+            </div>
+          )
+        },
+        componentDidUpdate: function(prevProps, prevState) {
+          console.log('Prev Props: ', prevProps);
+          console.log('Prev State: ', prevState);
+        }
+      });
+      ReactDOM.render(
+        <LikesComponent />,
+        document.getElementById('app')
+      )
+    </script>
+  </body>
+</html>
