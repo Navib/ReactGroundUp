@@ -36,9 +36,24 @@ ul {
 }
 ul li {
   float: left;
-  width: 7%;
+  width: 8%;
   margin-top: 1em;
 }
 .PokeList-item {
   text-transform: capitalize;
+}
+
+ul li a {
+  width: auto;
+  height: 25px;
+  display: block;
+  padding: 4px 0;
+  transition: all .2s ease-in-out;
+  background: white;
+  color: black;
+  margin: 0 4px;
+}
+ul li a:focus, ul li.selected a{
+  background: black;
+  color: white;
 }
