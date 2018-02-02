@@ -8,9 +8,9 @@ const SelectItemsPerPageButtons = ({options, onOptionSelected, selectedValue, al
       {options.map((option) => {
         console.log(`${selectedValue} ${option}`);
 
-        return <Button key={option} onClick={onOptionSelected} bsStyle={selectedValue === option ? 'primary' : 'default'}>{option}</Button>
+        return <Button key={option} onClick={onOptionSelected} bsStyle={+selectedValue === +option ? 'primary' : 'default'}>{option}</Button>
       })}
-      {allValue ? <Button key={allValue} onClick={onOptionSelected} bsStyle={selectedValue === allValue ? 'primary' : 'default'}>All</Button> : false}
+      {allValue ? <Button key={allValue} onClick={onOptionSelected} bsStyle={+selectedValue === +allValue ? 'primary' : 'default'}>All</Button> : false}
     </Col>
   )
 }
