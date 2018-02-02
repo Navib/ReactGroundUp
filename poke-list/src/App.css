@@ -57,3 +57,7 @@ ul li a:focus, ul li.selected a{
   background: black;
   color: white;
 }
+
+.list-group > div {
+    margin: 1em 0;
+}

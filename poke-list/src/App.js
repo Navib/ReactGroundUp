@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import 'whatwg-fetch';
-import PokeList from './components/PokeList';
+// import PokeList from './components/PokeList';
 import { Col } from 'react-bootstrap';
-import ReactPaginate from 'react-paginate';
-import SelectItemsPerPageButtons from './components/SelectItemsPerPageButton'
+// import ReactPaginate from 'react-paginate';
+// import SelectItemsPerPageButtons from './components/SelectItemsPerPageButton'
+import PokemonIndexList from './components/PokemonIndexList'
 
 class App extends Component {
   constructor(props){
@@ -18,7 +19,8 @@ class App extends Component {
       limit: 50,
       offset: 0,
       totalPages: 0,
-      count: 0
+      count: 0,
+      loaded:false
     };
 
     this.loadPokemon = this.loadPokemon.bind(this);
@@ -35,6 +37,7 @@ class App extends Component {
           pokemon:json.results,
           totalPages: pages,
           count: json.count,
+          loaded: true
         })
         console.log(this.state);
       }).catch(err => {
@@ -66,11 +69,24 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <SelectItemsPerPageButtons options={[10,50,100,200]} selectedValue={this.state.limit} allValue={this.state.count} onOptionSelected={this.handleLimitChange}/>
+        {this.state.loaded ? null : "Loading..."}
+        <PokemonIndexList
+          display={this.state.loaded}
+          options={['10','50','100','200']}
+          selectedValue={this.state.limit}
+          allValue={this.state.count}
+          onOptionSelected={this.handleLimitChange}
+          listofPokemon={this.state.pokemon}
+          pageCount={this.state.totalPages}
+          activePage={this.state.activePage}
+          onPageChange={this.handlePaginationSelect}
+        />
+
+        {/* <SelectItemsPerPageButtons options={[10,50,100,200]} selectedValue={this.state.limit} allValue={this.state.count} onOptionSelected={this.handleLimitChange}/>
         <Col sm={8} md={10} smOffset={2} mdOffset={1}>
           <PokeList listofPokemon={this.state.pokemon} />
         </Col>
-        <Col sm={9} smOffset={2}>
+        <Col md={9} mdOffset={2} sm={12} smOffset={0}>
           <ReactPaginate
             previousLabel={""}
             nextLabel={""}
@@ -81,7 +97,7 @@ class App extends Component {
             onPageChange={this.handlePaginationSelect}
             forcePage={this.state.activePage - 1}
           />
-        </Col>
+        </Col> */}
       </div>
     );
   }
