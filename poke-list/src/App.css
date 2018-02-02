@@ -26,3 +26,19 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+ul {
+  list-style-type: none;
+  float:left;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+ul li {
+  float: left;
+  width: 7%;
+  margin-top: 1em;
+}
+.PokeList-item {
+  text-transform: capitalize;
+}
