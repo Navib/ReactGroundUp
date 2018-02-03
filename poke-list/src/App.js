@@ -7,6 +7,7 @@ import { Col } from 'react-bootstrap';
 // import ReactPaginate from 'react-paginate';
 // import SelectItemsPerPageButtons from './components/SelectItemsPerPageButton'
 import PokemonIndexList from './components/PokemonIndexList'
+import PokemonModal from './components/PokemonModal'
 
 class App extends Component {
   constructor(props){
@@ -20,12 +21,15 @@ class App extends Component {
       offset: 0,
       totalPages: 0,
       count: 0,
-      loaded:false
+      loaded:false,
+      showModal: false
     };
 
     this.loadPokemon = this.loadPokemon.bind(this);
     this.handlePaginationSelect = this.handlePaginationSelect.bind(this);
     this.handleLimitChange = this.handleLimitChange.bind(this);
+    this.handleModalOpen = this.handleModalOpen.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
   }
   loadPokemon(url) {
     fetch(url)
@@ -62,6 +66,16 @@ class App extends Component {
   componentWillMount() {
     this.loadPokemon(`${this.props.baseUrl}/pokemon/`);
   }
+  handleModalOpen() {
+    this.setState({
+      showModal: true
+    })
+  }
+  handleModalClose() {
+    this.setState({
+      showModal: false
+    })
+  }
   render() {
     return (
       <div className="App">
@@ -82,23 +96,10 @@ class App extends Component {
           onPageChange={this.handlePaginationSelect}
         />
 
-        {/* <SelectItemsPerPageButtons options={[10,50,100,200]} selectedValue={this.state.limit} allValue={this.state.count} onOptionSelected={this.handleLimitChange}/>
-        <Col sm={8} md={10} smOffset={2} mdOffset={1}>
-          <PokeList listofPokemon={this.state.pokemon} />
-        </Col>
-        <Col md={9} mdOffset={2} sm={12} smOffset={0}>
-          <ReactPaginate
-            previousLabel={""}
-            nextLabel={""}
-            breakLabel={<a href="">...</a>}
-            pageCount={this.state.totalPages}
-            pageRangeDisplayed={2}
-            marginPagesDisplayed={5}
-            onPageChange={this.handlePaginationSelect}
-            forcePage={this.state.activePage - 1}
-          />
-        </Col> */}
+        <PokemonModal openModal={this.handleModalOpen} closeModal={this.handleModalClose} showModal={this.state.showModal} />
       </div>
+
+
     );
   }
 }
