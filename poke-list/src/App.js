@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import 'whatwg-fetch';
-// import PokeList from './components/PokeList';
-import { Col } from 'react-bootstrap';
-// import ReactPaginate from 'react-paginate';
-// import SelectItemsPerPageButtons from './components/SelectItemsPerPageButton'
 import PokemonIndexList from './components/PokemonIndexList'
 import PokemonModal from './components/PokemonModal'
 
