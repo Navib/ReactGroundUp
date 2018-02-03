@@ -61,3 +61,6 @@ ul li a:focus, ul li.selected a{
 .list-group > div {
     margin: 1em 0;
 }
+button.PokeList-item.list-group-item {
+  text-align: center;
+}
