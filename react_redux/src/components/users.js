@@ -10,7 +10,9 @@ class Users extends Component {
   componentDidMount() {
   }
   render() {
-    const { data, fetchUsers } = this.props;
+    const { data, fetchUsers, setUser } = this.props;
+    console.log(data);
+
     return (
       <div className="container">
         <Button
@@ -23,6 +25,7 @@ class Users extends Component {
             return <UserItem
                       key={i}
                       user={user}
+                      onClick={() => setUser(user)}
                     />
           })}
         </div>
